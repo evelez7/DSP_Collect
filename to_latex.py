@@ -9,7 +9,6 @@ def insert_escape(to_fix):
     i = 0
     for index in index_list:
         to_fix = to_fix[:index + i] + "{backslash}".format(backslash = "\\") + to_fix[index + i:]
-        print(to_fix)
         i+=1
         
     return to_fix
@@ -17,7 +16,10 @@ def insert_escape(to_fix):
 def main():
     with open("dsp_doc.tex", 'w') as tex_file:
         tex_file.write("\documentclass[a4paper, 12pt]{article}\n")
+        tex_file.write("\usepackage{hyperref}")
+        tex_file.write("\hypersetup{colorlinks, citecolor=black, filecolor=black, linkcolor=black, urlcolor=black}")
         tex_file.write("\\begin{document}\n")
+        tex_file.write("\\tableofcontents")
 
         for file_string in glob.glob("*.txt"):
             with open(file_string) as txt_file:
